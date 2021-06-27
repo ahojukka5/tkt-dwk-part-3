@@ -3,7 +3,7 @@ name: Deploy Todo app to Kubernetes
 on:
   push:
     branches:
-      - master
+      - "*"
 
 env:
   GKE_CLUSTER: dwk-cluster
