@@ -20,8 +20,8 @@ jobs:
 
       - name: Create tag
         run: |-
-          echo "::set-env name=PROJECT::gcr.io/${{ secrets.GKE_PROJECT }}"
-          echo "::set-env name=TAG::${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
+          echo "PROJECT=gcr.io/${{ secrets.GKE_PROJECT }}" >> $GITHUB_ENV
+          echo "TAG=${GITHUB_REF#refs/heads/}-$GITHUB_SHA" >> $GITHUB_ENV
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@master
