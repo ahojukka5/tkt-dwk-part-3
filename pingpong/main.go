@@ -62,6 +62,7 @@ func RegisterPing(w http.ResponseWriter, r *http.Request) {
 func main() {
 	InitDB()
 	http.HandleFunc("/", RegisterPing)
+	http.HandleFunc("/pingpong", RegisterPing)
 	println("Ping/pong server listening in address http://localhost" + port)
 	err := http.ListenAndServe(port, nil)
 	if err != nil {
