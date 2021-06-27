@@ -14,13 +14,14 @@ jobs:
     name: Build, Publish and Deploy
     runs-on: ubuntu-latest
 
-    env:
-      PROJECT: gcr.io/${{ secrets.GKE_PROJECT }}
-      TAG: ${GITHUB_REF#refs/heads/}-$GITHUB_SHA
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Create tag
+        run: |-
+          echo "::set-env name=PROJECT::gcr.io/${{ secrets.GKE_PROJECT }}"
+          echo "::set-env name=TAG::${GITHUB_REF#refs/heads/}-$GITHUB_SHA"
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@master
