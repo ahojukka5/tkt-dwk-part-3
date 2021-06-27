@@ -32,3 +32,18 @@ Link: <https://devopswithkubernetes.com/part-2>
 - Exercise 2.08: Project v1.2 ([link](https://github.com/ahojukka5/tkt-dwk-part-2/tree/2.08))
 - Exercise 2.09: Daily todos ([link](https://github.com/ahojukka5/tkt-dwk-part-2/tree/2.09))
 - Exercise 2.10: Project v1.3 ([link](https://github.com/ahojukka5/tkt-dwk-part-2/tree/2.10))
+
+## Part 3
+
+Link: <https://devopswithkubernetes.com/part-3>
+
+- Exercise 3.01: Pingpong GKE ([link](https://github.com/ahojukka5/tkt-dwk-part-3/tree/3.01))
+- Exercise 3.02: Back to Ingress ([link](https://github.com/ahojukka5/tkt-dwk-part-3/tree/3.02))
+- Exercise 3.03: Project v1.4 ([link](https://github.com/ahojukka5/tkt-dwk-part-3/tree/3.03))
+- Exercise 3.04: Project v1.4.1 ([link](https://github.com/ahojukka5/tkt-dwk-part-3/tree/3.04))
+- Exercise 3.05: Project v1.4.2 ([link](https://github.com/ahojukka5/tkt-dwk-part-3/tree/3.05))
+- Exercise 3.06: DBaaS vs DIY ([link](https://github.com/ahojukka5/tkt-dwk-part-3/tree/3.06))
+- Exercise 3.07: Commitment ([link](https://github.com/ahojukka5/tkt-dwk-part-3/tree/3.07))
+- Exercise 3.08: Project v1.5 ([link](https://github.com/ahojukka5/tkt-dwk-part-3/tree/3.08))
+- Exercise 3.09: Sensible processes ([link](https://github.com/ahojukka5/tkt-dwk-part-3/tree/3.09))
+- Exercise 3.10: Project v1.6 ([link](https://github.com/ahojukka5/tkt-dwk-part-3/tree/3.10))
