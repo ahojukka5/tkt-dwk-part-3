@@ -69,4 +69,6 @@ jobs:
           )
 
       - name: Deploy to Kubernetes
-        run: kustomize build gke-todo | kubectl apply -f -
+        run: |-
+          cp -a manifests gke-todo/manifests
+          kustomize build gke-todo | kubectl apply -f -
