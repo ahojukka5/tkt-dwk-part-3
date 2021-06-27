@@ -57,7 +57,7 @@ jobs:
         run: |-
           curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
           (
-            cd gke/todo
+            cd gke-todo
 
             # set namespace from default (todo) to match the branch name
             kustomize edit set namespace $NAMESPACE
@@ -69,4 +69,4 @@ jobs:
           )
 
       - name: Deploy to Kubernetes
-        run: kustomize build gke/todo | kubectl apply -f -
+        run: kustomize build gke-todo | kubectl apply -f -
