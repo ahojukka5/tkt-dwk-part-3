@@ -22,3 +22,12 @@ For personal hobby projects, maintaining own database might be an interesting
 experiment, but when dealing with real data, the use of DBaaS is better solution
 as long as the running costs are not too high compared to the DYI solution. And
 that mainly depends on the amount of data.
+
+## Database solution used in Todo app
+
+In Todo app, "do it yourself" solution is used rather than Google Cloud SQL. The
+main reason for this is that application has been developed locally and in that
+time MongoDB was chosen to be a database solution. It's already deployed and
+working and there's no any practical reason to change away from that. Another
+nice thing is that backend and database is also working without Google services,
+thus there's no any kind of vendor lock-in.
