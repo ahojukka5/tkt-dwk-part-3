@@ -22,3 +22,7 @@ spec:
           volumeMounts:
             - name: cache
               mountPath: /var/cache/jukka
+          resources:
+            limits:
+              cpu: "250m"
+              memory: "64Mi"

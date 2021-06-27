@@ -22,3 +22,7 @@ spec:
                 secretKeyRef:
                   name: todo-secrets
                   key: MONGO_PASSWORD
+          resources:
+            limits:
+              cpu: "250m"
+              memory: "64Mi"
