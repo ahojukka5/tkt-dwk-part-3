@@ -1,0 +1,61 @@
+name: Deploy Todo app to Kubernetes
+
+on:
+  push:
+    branches:
+      - master
+
+env:
+  GKE_CLUSTER: dwk-cluster
+  GKE_ZONE: europe-north1-b
+
+jobs:
+  build-publish-deploy:
+    name: Build, Publish and Deploy
+    runs-on: ubuntu-latest
+
+    env:
+      PROJECT: gcr.io/${{ secrets.GKE_PROJECT }}
+      TAG: ${GITHUB_REF#refs/heads/}-$GITHUB_SHA
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Google Cloud
+        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          project_id: ${{ secrets.GKE_PROJECT }}
+
+      - name: Authenticate Google Cloud and configure Docker
+        run: gcloud --quiet auth configure-docker
+
+      - name: Google Cloud, get credentials
+        run: gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_ZONE"
+
+      - name: Build and tag containers
+        run: |-
+          echo "Containers tag is $TAG"
+          docker build --tag $PROJECT/dwk-todo-frontend:$TAG todo-frontend
+          docker build --tag $PROJECT/dwk-todo-backend:$TAG todo-backend
+          docker build --tag $PROJECT/dwk-todo-cronjob:$TAG todo-cronjob
+
+      - name: Upload containers
+        run: |-
+          docker push $PROJECT/dwk-todo-frontend:$TAG
+          docker push $PROJECT/dwk-todo-backend:$TAG
+          docker push $PROJECT/dwk-todo-cronjob:$TAG
+
+      - name: Create Kustomized build
+        run: |-
+          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+          (
+            cd gke/todo
+            kustomize edit set image $PROJECT/dwk-todo-frontend:$TAG
+            kustomize edit set image $PROJECT/dwk-todo-backend:$TAG
+            kustomize edit set image $PROJECT/dwk-todo-cronjob:$TAG
+          )
+
+      - name: Deploy to Kubernetes
+        run: kustomize build gke/todo | kubectl apply -f -
