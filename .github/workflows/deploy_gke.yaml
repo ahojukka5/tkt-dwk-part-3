@@ -22,11 +22,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Setup Google Cloud
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
         with:
-          service_account_key: ${{ secrets.GKE_SA_KEY }}
           project_id: ${{ secrets.GKE_PROJECT }}
+          service_account_key: ${{ secrets.GKE_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Use gcloud CLI
+        run: gcloud info
 
       - name: Authenticate Google Cloud and configure Docker
         run: gcloud --quiet auth configure-docker
