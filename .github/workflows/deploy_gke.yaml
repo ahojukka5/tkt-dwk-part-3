@@ -18,7 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Create tag
+      - name: Create environment variables
         run: |-
           echo "PROJECT=gcr.io/${{ secrets.GKE_PROJECT }}" >> $GITHUB_ENV
           echo "NAMESPACE=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
